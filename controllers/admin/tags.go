@@ -3,6 +3,7 @@ package controlleradmin
 import (
 	"gin_blog/lib/global"
 	"gin_blog/models"
+	"gin_blog/models/scope"
 
 	"github.com/gin-gonic/gin"
 )
@@ -10,10 +11,12 @@ import (
 //获取文章标签列表
 
 func GetTags(c *gin.Context) {
+	var tags []models.Tag
+	global.DB.Scopes(scope.Paginate(c)).Order("id asc").Find(&tags)
 	c.JSON(200, gin.H{
 		"status": 200,
 		"msg":    "成功",
-		"data":   gin.H{},
+		"data":   tags,
 	})
 }
 
