@@ -18,6 +18,10 @@ type LoginUser struct {
 
 var ctx = context.Background()
 
+//登录
+//params
+// phone
+// login_code
 func Login(c *gin.Context) {
 	var user models.User
 	//声明接收的变量
@@ -67,6 +71,8 @@ func Login(c *gin.Context) {
 }
 
 //发送短信验证码
+//@params
+//phone: 电话
 func SendLoginCode(c *gin.Context) {
 	//生成四位随机数
 	code := 1234

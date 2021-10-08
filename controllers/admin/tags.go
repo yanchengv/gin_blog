@@ -12,11 +12,22 @@ import (
 
 func GetTags(c *gin.Context) {
 	var tags []models.Tag
+	//分页标签列表数据
+	tagList := make([]interface{}, 0, len(tags))
 	global.DB.Scopes(scope.Paginate(c)).Order("id asc").Find(&tags)
+	for _, tag := range tags {
+
+		tagItemMap := map[string]interface{}{
+			"id":         tag.ID,
+			"name":       tag.Name,
+			"created_at": tag.CreatedAt.Format("2006-01-02 15:04:05"),
+		}
+		tagList = append(tagList, tagItemMap)
+	}
 	c.JSON(200, gin.H{
 		"status": 200,
 		"msg":    "成功",
-		"data":   tags,
+		"data":   tagList,
 	})
 }
 
