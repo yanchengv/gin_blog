@@ -1,4 +1,2 @@
-2021-10-08T14:38:36.474+0800	INFO	initializers/migrate.go:29	register table success
-2021-10-08T14:38:40.014+0800	INFO	zap@v0.0.1/zap.go:46	/api/getTags	{"status": 200, "method": "GET", "path": "/api/getTags", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.1.1", "time": "2021-10-08T06:38:40Z", "latency": 0.012860761}
-2021-10-08T14:39:29.224+0800	INFO	zap@v0.0.1/zap.go:46	/api/getTags	{"status": 200, "method": "GET", "path": "/api/getTags", "query": "page=2", "ip": "::1", "user-agent": "PostmanRuntime/7.1.1", "time": "2021-10-08T06:39:29Z", "latency": 0.013220369}
-2021-10-08T14:39:36.683+0800	INFO	zap@v0.0.1/zap.go:46	/api/getTags	{"status": 200, "method": "GET", "path": "/api/getTags", "query": "page=3", "ip": "::1", "user-agent": "PostmanRuntime/7.1.1", "time": "2021-10-08T06:39:36Z", "latency": 0.012264481}
+2021-10-09T17:10:36.818+0800	INFO	initializers/migrate.go:29	register table success
+2021-10-09T17:10:48.204+0800	INFO	zap@v0.0.1/zap.go:46	/admin/articles/	{"status": 200, "method": "GET", "path": "/admin/articles/", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.1.1", "time": "2021-10-09T09:10:48Z", "latency": 0.312431036}

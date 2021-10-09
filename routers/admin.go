@@ -9,8 +9,15 @@ import (
 //后台路由
 func InitAdminRouter(r *gin.Engine) {
 	admin := r.Group("/admin")
-	admin.GET("/getTags", controlleradmin.GetTags)
-	admin.POST("/addTag", controlleradmin.AddTag)
-	admin.POST("/updateTag", controlleradmin.UpdateTag)
-	admin.POST("/deleteTag", controlleradmin.DeleteTag)
+	tag := admin.Group("/tags")
+	tag.GET("/", controlleradmin.GetTags)
+	tag.POST("/create", controlleradmin.AddTag)
+	tag.POST("/update", controlleradmin.UpdateTag)
+	tag.POST("/delete", controlleradmin.DeleteTag)
+
+	article := admin.Group("/articles")
+	article.GET("/", controlleradmin.GetArticles)
+	article.POST("/create", controlleradmin.AddArticle)
+	article.POST("/delete", controlleradmin.DeleteArticle)
+	article.POST("/update", controlleradmin.UpdateAticle)
 }
