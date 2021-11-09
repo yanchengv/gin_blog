@@ -6,6 +6,7 @@ import (
 	"gin_blog/routers"
 	"time"
 
+	"github.com/gin-contrib/cors"
 	ginzap "github.com/gin-contrib/zap"
 	"github.com/gin-gonic/gin"
 )
@@ -15,14 +16,16 @@ func main() {
 	initializers.InitData()
 
 	r := gin.Default()
+
 	//基于zap的中间件,使用zap日志库来接收gin框架默认输出的日志。
 	r.Use(ginzap.Ginzap(global.LOG, time.RFC3339, true))
 	r.Use(ginzap.RecoveryWithZap(global.LOG, true))
-
+	//跨域设置。默认开放全部
+	r.Use(cors.Default())
 	//初始化路由
 	routers.InitAdminRouter(r)
 	routers.InitApiRouter(r)
 
-	r.Run()
+	r.Run(":9000")
 
 }

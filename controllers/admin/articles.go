@@ -47,10 +47,33 @@ func AddArticle(c *gin.Context) {
 
 //修改文章
 func UpdateAticle(c *gin.Context) {
-	
+	var params models.Article
+	var article models.Article
+	if err := c.ShouldBindJSON(&params); err != nil {
+		c.JSON(200, gin.H{"status": 200, "msg": "修改失败", "data": gin.H{"error": err}})
+		return
+	}
+	a := global.DB.Where("id = ?", params.ID).First(&article)
+	a.Updates(models.Article{Title: params.Title, Subtitle: params.Subtitle, Content: params.Content})
+	c.JSON(200, gin.H{
+		"status": 200,
+		"msg":    "修改成功",
+		"data":   gin.H{},
+	})
 }
 
 //删除文章
 func DeleteArticle(c *gin.Context) {
-
+	var params models.Article
+	var article models.Article
+	if err := c.ShouldBindJSON(&params); err != nil {
+		c.JSON(200, gin.H{"status": 200, "msg": "删除失败", "data": gin.H{"error": err}})
+		return
+	}
+	global.DB.Where("id = ?", params.ID).Delete(&article)
+	c.JSON(200, gin.H{
+		"stauts": 200,
+		"msg":    "删除成功",
+		"data":   gin.H{"id": article.ID, "title": article.Title},
+	})
 }

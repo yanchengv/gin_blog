@@ -8,9 +8,10 @@ import (
 
 //后台路由
 func InitAdminRouter(r *gin.Engine) {
+
 	admin := r.Group("/admin")
 	tag := admin.Group("/tags")
-	tag.GET("/", controlleradmin.GetTags)
+	tag.GET("/", controlleradmin.GetTags) // 前端请求时 tags后面要加/.否则跨域设置无效。admin/tags/
 	tag.POST("/create", controlleradmin.AddTag)
 	tag.POST("/update", controlleradmin.UpdateTag)
 	tag.POST("/delete", controlleradmin.DeleteTag)
